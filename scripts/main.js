@@ -33,7 +33,8 @@ GameState.prototype.create = function() {
       this.groups.sprites.add(new RoomPlayer(
         this.game,
         this.game.world.randomX,
-        this.game.world.randomY));
+        this.game.world.randomY,
+        data.users[i].username));
     }
   }).fail(function(data) {
     console.log("u fail");

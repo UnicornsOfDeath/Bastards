@@ -1,5 +1,5 @@
 var ROOM_PLAYER_SPEED = 200;
-var RoomPlayer = function(game, x, y) {
+var RoomPlayer = function(game, x, y, name) {
   Phaser.Sprite.call(this, game, x, y, 'panda');
   var frameRate = 10;
   this.animations.add('down', [0, 1, 2], frameRate);
@@ -13,11 +13,17 @@ var RoomPlayer = function(game, x, y) {
   this.body.velocity.setTo(velX, ROOM_PLAYER_SPEED - velX);
   this.body.collideWorldBounds = true;
   this.body.bounce.set(1);
+
+  var textStyle = { font: "18px Arial", fill: "#000000", align: "center" };
+  this.name = game.add.text(0, 0, name, textStyle);
 };
 RoomPlayer.prototype = Object.create(Phaser.Sprite.prototype);
 RoomPlayer.prototype.constructor = RoomPlayer;
 
 RoomPlayer.prototype.update = function() {
+  this.name.x = this.x;
+  this.name.y = this.y - 16;
+
   // find the dominant direction
   var dominantDir = null;
   var fastestSpeed = 0;
