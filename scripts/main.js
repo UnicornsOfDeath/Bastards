@@ -19,6 +19,19 @@ GameState.prototype.create = function() {
                                     'placeholder');
   this.game.physics.arcade.enable(placeholder);
   placeholder.anchor.setTo(0.5, 0.5);
+
+  // Try to log in
+  var authURL = server + 'user';//'user/username/' + username + '/' + password;
+  $.ajax({
+    crossDomain: true,
+    url: authURL
+  }).done(function(data) {
+    console.log("done");
+    console.log(data);
+  }).fail(function(data) {
+    console.log("u fail");
+    console.log(data);
+  });
 };
 
 GameState.prototype.update = function() {
